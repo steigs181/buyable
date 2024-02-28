@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'template_meta.html' %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="header-box">
+				<div class="header-items">
+					{% include 'template_nav.html' %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>{{ er['title'] }}</h2>
+					<p>{{ er['desc'] }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'template_meta.html' %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="header-box">
+				<div class="header-items">
+					{% include 'template_nav.html' %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<div class="edit-split">
+						<div class="edit-left">
+							<img src="{{ url_for('static', filename='img/uploads/'+item['image']) }}" alt="Item">
+						</div>
+						<div class="edit-right">
+							<h2>Edit Product</h2>
+							<form class="reg" action="/action/item?t=edit" method="post" enctype="multipart/form-data">
+								<div class="editor-aa">
+									<input type="hidden" id="item_id" name="item_id" value="{{ item['id'] }}">
+									<input type="hidden" id="item_img_copy" name="item_img_copy" value="{{ item['image'] }}">
+									<label for="item_name">Name</label>
+									<input type="text" id="item_name" name="item_name" value="{{ item['name'] }}"><br>
+								</div>
+								<div class="editor-aa">
+									<label for="item_name">Price</label>
+									<input type="text" id="item_price" name="item_price" value="{{ item['price'] }}"><br>
+								</div>
+								<div class="editor-aa">
+									<label for="item_cat">Category</label>
+									<select name="item_cat">
+									{% for it in cats %}
+									<option value="{{ it.id }}" {% if item['cat']==it.id %}selected{% endif %}>{{ it.name }}</option>
+									{% endfor %}</select><br>
+								</div>
+								<div class="editor-aa">
+									<label for="item_img">Image</label>
+									<input type="file" id="item_img" name="item_img" accept="image/*">
+								</div>
+								<div class="editor-aa">
+									<label for="item_desc">Description</label>
+									<textarea id="item_desc" name="item_desc" rows="4">{{ item['desc'] }}</textarea>
+								</div>
+								<input class="button logbutt" type="submit" value="Update Item"><button type="button" onclick='delete_it()' style="margin-left: 10px;" class="button logbutt">Delete Item</button>
+							</form>
+						</div>
+					</div>
+					{% with messages = get_flashed_messages(category_filter=['items']) %}
+					{% if messages %}
+					<div class="editor-errors logbutt">
+						<p>There's some problems:</p>
+						<ul>
+							{% for message in messages %}
+							<li>{{message}}</li>
+							{% endfor %}
+						</ul>
+					</div>
+					{% endif %}
+					{% endwith %}
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	function delete_it()
+	{
+		alert("NOPE");
+		//window.location.href = "/category/edit?id={{ item["id"] }}&action=delete";
+	}
+</script>
+</html>

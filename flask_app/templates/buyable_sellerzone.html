@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'template_meta.html' %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="header-box">
+				<div class="header-items">
+					{% include 'template_nav.html' %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>Seller's Zone</h2>
+					<p>A control panel for various parts of the site.</p>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>Brand Settings</h2>
+					<p style="margin-bottom: 10px;">You can input your information as a brand, which can be seen on your <a href="/user/view?id={{ user.id }}">profile page</a>.<br>Leave the Brand Name blank, if you want to sell products with your name instead.</p>
+					<form class="reg" action="/action/seller?action=edit" method="post">
+						<div class="editor-aa">
+							<label for="brand_name">Brand Name</label>
+							<input type="text" id="brand_name" name="brand_name" value="{{ seller.name }}"><br>
+						</div>
+						<div class="editor-aa">
+							<label for="brand_desc">Description</label>
+							<textarea id="brand_desc" name="brand_desc" rows="4">{{ seller.description }}</textarea>
+						</div>
+						<input class="button logbutt" type="submit" value="Update Info">
+					</form>
+					{% with messages = get_flashed_messages(category_filter=['branding']) %}
+					{% if messages %}
+					<div class="editor-errors logbutt">
+						<p>There's some problems:</p>
+						<ul>
+							{% for message in messages %}
+							<li>{{message}}</li>
+							{% endfor %}
+						</ul>
+					</div>
+					{% endif %}
+					{% endwith %}
+					
+					{% with messages = get_flashed_messages(category_filter=['branding_good']) %}
+					{% if messages %}
+					<div class="editor-confirms logbutt">
+						{% for message in messages %}
+						<p>{{message}}</p>
+						{% endfor %}
+					</div>
+					{% endif %}
+					{% endwith %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2><a name="products">My Products</a></h2>
+					{% if items|length>0 %}
+					<table>
+						<tr>
+							<th>Name</th>
+							<th>Date Created</th>
+							<th>Action</th>
+						</tr>
+						{% for i in items %}
+						<tr>
+							<td><a href="/item/view?id={{ i.id }}">{{ i.name }}</a></td>
+							<td>{{ i.when }}</td>
+							<td><a href="/item/edit?id={{ i.id }}&action=edit">Edit</a> <a  href="/item/edit?id={{ i.id }}&action=delete">Delete</a></td>
+						</tr>
+						{% endfor %}
+					</table>
+					{% else %}
+					<div class="empty-table">
+						<p>There are no products.</p>
+					</div>
+					{% endif %}
+					<button onclick="document.location='/item/add'" class="button logbutt" {% if not cats|length>0 %}disabled{% endif %}>Add Item</button>
+				</div>
+				<div class="block-items block" style="min-height: unset;">
+					<h2><a name="categories">Categories</a></h2>
+					<p style="margin-bottom: 10px;">Because there's no admin feature, this edits <em>all</em> categories, and it affects the items within. This includes the items that do not belong to the user.</p>
+					{% if cats|length>0 %}
+					<table>
+						<tr>
+							<th>Name</th>
+							<th>Date Created</th>
+							<th>Action</th>
+						</tr>
+						{% for c in cats %}
+						<tr>
+							<td><a href="/?c={{ c.id }}">{{ c.name }}</a></td>
+							<td>{{ c.when }}</td>
+							<td><a href="/category/edit?id={{ c.id }}">Edit</a></td>
+						</tr>
+						{% endfor %}
+					</table>
+					{% else %}
+					<div class="empty-table">
+						<p>There are no categories.</p>
+					</div>
+					{% endif %}
+					<button onclick="document.location='/category/add'" class="button logbutt">Add Category</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

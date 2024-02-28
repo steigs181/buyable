@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'template_meta.html' %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="header-box">
+				<div class="header-items">
+					{% include 'template_nav.html' %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>Add Category</h2>
+					<form class="reg" action="/action/category?t=add" method="post">
+						<div class="editor-aa">
+							<label for="category_name">Name</label>
+							<input type="text" id="item_name" name="category_name" value="{{ item['name'] }}"><br>
+						</div>
+						<input class="button logbutt" type="submit" value="Add Category">
+					</form>
+					{% with messages = get_flashed_messages(category_filter=['categories']) %}
+					{% if messages %}
+					<div class="editor-errors logbutt">
+						<p>There's some problems:</p>
+						<ul>
+							{% for message in messages %}
+							<li>{{message}}</li>
+							{% endfor %}
+						</ul>
+					</div>
+					{% endif %}
+					{% endwith %}
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

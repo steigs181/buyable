@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'template_meta.html' %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="header-box">
+				<div class="header-items">
+					{% include 'template_nav.html' %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>Edit Category</h2>
+					<form class="reg" action="/action/category?t=edit" method="post">
+						<div class="editor-aa">
+							<input type="hidden" id="item_id" name="item_id" value="{{ item['id'] }}">
+							<label for="category_name">Name</label>
+							<input type="text" id="item_name" name="category_name" value="{{ item['name'] }}"><br>
+						</div>
+						<input class="button logbutt" type="submit" value="Update Category"><button type="button" onclick='delete_it()' style="margin-left: 10px;" class="button logbutt">Delete Category</button>
+					</form>
+					{% with messages = get_flashed_messages(category_filter=['categories']) %}
+					{% if messages %}
+					<div class="editor-errors logbutt">
+						<p>There's some problems:</p>
+						<ul>
+							{% for message in messages %}
+							<li>{{message}}</li>
+							{% endfor %}
+						</ul>
+					</div>
+					{% endif %}
+					{% endwith %}
+				</div>
+			</div>
+		</div>
+		{% if items|length>0 %}
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>Items in {{ cat.name }}</h2>
+					<div class="items-box">
+						{% for i in items %}
+						<div onclick="goto_product({{i.id}})" class="item-instance">
+							<img src="{{ url_for('static', filename='img/uploads/'+i.img) }}" alt="Item">
+							<h3>{{ i.name }}</h3>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</body>
+{% if items|length>0 %}
+<script type="text/javascript">
+	function delete_it()
+	{
+		if (confirm("Are you sure you want to delete this category?\nThis will delete ALL products in it."))
+			window.location.href = "/category/edit?id={{ item["id"] }}&action=delete";
+	}
+</script>
+{% else %}
+<script type="text/javascript">
+	function delete_it()
+	{
+		window.location.href = "/category/edit?id={{ item["id"] }}&action=delete";
+	}
+</script>
+{% endif %}
+
+</html>

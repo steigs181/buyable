@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'template_meta.html' %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="header-box">
+				<div class="header-items">
+					{% include 'template_nav.html' %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>{{ person['name'] }}</h2>
+					<p class="about-user"><strong>Date Joined:</strong> {{ user_data.when }}</p>
+					{% if person['desc']|length>0 %}<p>{{ person['desc'] }}</p>{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>Products</h2>
+					<div class="items-box">
+							{% for i in items %}
+							<div onclick="goto_product({{i.id}})" class="item-instance">
+								<img src="{{ url_for('static', filename='img/uploads/'+i.img) }}" alt="Item">
+								<h3>{{ i.name }}</h3>
+								<p>{{ i.price_str }}</p>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

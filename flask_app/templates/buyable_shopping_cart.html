@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'template_meta.html' %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="header-box">
+				<div class="header-items">
+					{% include 'template_nav.html' %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>Shopping Cart</h2>
+					{% if items|length>0 %}
+					<div class="mycart-main">
+						{% for i in items %}
+						<div class="mycart-row">
+							<div class="mycart-column mycart-item itemblocko"><img class="item-img" src="{{ url_for('static', filename='img/uploads/'+i.item_img) }}" alt="Item"></div>
+							<div onclick="goto_product({{ i.item_id }})" class="mycart-column mycart-item item"><div class="center"><p class="item-name">{{ i.item_name }}</p><p>{{ i.item_price_str }}</p>{% if i.item_price!=i.item_total %}<p style="font-size: small; font-style: italic; margin-top: 5px;">(x{{ i.quantity }} Total: {{ i.item_total_str }})</p>{% endif %}</div></div>
+							<div class="mycart-column mycart-item quanity"><div class="center"><p class="item-name">Quantity:</p><p>{{ i.quantity }}</p><button onclick="cart_delete( {{ i.id }} )" type="button" class="remove-button">Remove</button></div></div>
+						</div>
+						{% endfor %}
+					</div>
+					<p style="margin-top: 10px;"><strong>Grand Total:</strong> {{ total }}</p>
+					<button class="button" disabled>Checkout</button><button type="button" onclick="cart_clear()" style="margin-left: 10px;" class="button">Clear Cart</button>
+					{% else %}
+					<p>The shopping cart is empty.</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

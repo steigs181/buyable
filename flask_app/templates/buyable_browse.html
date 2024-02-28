@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'template_meta.html' %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="header-box">
+				<div class="header-items">
+					{% include 'template_nav.html' %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-categories block">
+					<h2>Categories</h2>
+					<ul>
+						<li>{% include 'template_cat_all_start.html' %}(All){% include 'template_cat_all_end.html' %}</li>
+						{% for c in cats %}
+						<li>{% include 'template_cat_start.html' %}{{ c.name }}{% include 'template_cat_end.html' %}</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="block-items block">
+					{% if search_url|length>0 %}
+					<h2>Search Results</h2>
+					{% else %}
+					<h2>Products</h2>
+					{% endif %}
+					<div class="items-box">
+						{% for i in items %}
+						<div onclick="goto_product({{i.id}})" class="item-instance">
+							<img src="{{ url_for('static', filename='img/uploads/'+i.img) }}" alt="Item">
+							<h3>{{ i.name }}</h3>
+							<p>{{ i.price_str }}</p>
+						</div>
+						{% endfor %}
+					</div>
+					<div class="pagination">
+						<p>Previous</p>
+						<p>Page 1</p>
+						<p>Next</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

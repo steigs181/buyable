@@ -1,0 +1,450 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Nunito', sans-serif;
+	background-color: #f2f2f2;
+}
+
+h2 {
+	margin-bottom: 10px;
+}
+
+.block-split {
+	display: flex;
+}
+
+.container  {
+	width: 100%;
+}
+
+.header {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	min-width: 1250px;
+	background-color: #80c1ff;
+	color: white;
+	border-bottom: 2px solid #66b5ff;
+}
+
+.header-box {
+	width: 1250px;
+	margin: auto;
+}
+
+.search-box {
+	width: 100%;
+	padding: 10px;
+	font-size: 12pt;
+}
+
+.header-items {
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.nav-block {
+	display: flex;
+	align-items: center;
+	flex: 1;
+}
+
+.header-nav {
+	flex: 2;
+}
+
+.header-search {
+	flex: 4;
+	align-items: center;
+}
+
+.header-logo h1 {
+	user-select: none;
+}
+
+.header-nav li {
+
+}
+
+.header-logo a:link {
+	text-decoration: inherit;
+    color: inherit;
+    user-select: none;
+    cursor: pointer;
+}
+
+.header-logo a:visited {
+	text-decoration: inherit;
+    color: inherit;
+    user-select: none;
+    cursor: pointer;
+}
+
+.header-nav li a:link {
+	text-decoration: inherit;
+    color: inherit;
+    /*user-select: none;*/
+    cursor: pointer;
+}
+
+.header-nav li a:visited {
+	text-decoration: inherit;
+    color: inherit;
+    /*user-select: none;*/
+    cursor: pointer;
+}
+
+.header-nav li a:hover {
+	text-decoration: underline;
+}
+
+.header-nav ul {
+}
+
+.header-nav ul {
+	display: flex;
+	margin-left: 25px;
+	font-weight: bold;
+}
+
+.header-nav li {
+	margin-left: 15px;
+	margin-right: 10px;
+	white-space: nowrap;
+}
+
+.header-nav li::marker {
+	padding-left: 40px;
+	padding-right: 20px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.content {
+	width: 1250px;
+	margin: auto;
+}
+
+.block-categories {
+	flex: 1;
+}
+
+.block-items {
+	flex: 3;
+}
+
+.block {
+	margin: 10px;
+	padding: 20px;
+	background-color: white;
+	min-height: 750px;
+	border: 2px solid lightgray;
+}
+
+.block ul {
+	margin-top: 10px;
+	padding-left: 32px;
+	font-size: 15pt;
+}
+
+.items-box {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: flex-start;
+}
+
+
+.item-instance {
+	width: 200px;
+	background-color: lightblue;
+	margin: 2.5px;
+	display: flex;
+	flex-direction: column;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #e6e6e6;
+	user-select: none;
+    cursor: pointer;
+	/*border: 2px solid black;*/
+}
+
+.item-instance:nth-child(even)
+{
+/* 	background-color: pink;*/
+}
+
+.item-instance:hover
+{
+	background-color: #d9d9d9;
+}
+
+.item-instance h3 {
+	margin-top: 10px;
+}
+
+.item-instance h3, .item-instance p {
+	text-align: center;
+}
+
+.item-instance img {
+	margin: auto;
+	height: 140px;
+	background-color: white;
+	padding: 5px;
+	border-radius: 10px;
+}
+
+.item-instance:hover {
+	/*border: 2px solid black;*/
+}
+
+.pagination {
+	display: flex;
+	justify-content: space-between;
+	display: none;
+}
+
+.item-img {
+	height: 120px;
+}
+
+.mycart-main {
+	width: 60%;
+}
+
+.mycart-row {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+	border: 2px solid #e6e6e6;
+	padding: 5px;
+	border-radius: 10px;
+	user-select: none;
+}
+
+.mycart-row:last-child {
+	margin-bottom: 0px;
+}
+
+.mycart-column {
+	margin-right: 10px;
+	height: 120px;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	/* background-color: #e6e6e6; */
+	border-radius: 5px;
+	border: 2px dashed #e6e6e6;
+}
+
+.mycart-column:last-child {
+	margin-right: 0px;
+}
+
+.mycart-column:hover {
+	/* background-color: #d9d9d9; */
+}
+
+.mycart-item {
+	text-align: center;
+}
+
+.center {
+	/*border: 1px solid green;*/
+	flex: 1;
+}
+
+.item-name {
+	font-weight: bold;
+}
+
+.itemblocko {
+	flex: 2;
+	display: flex;
+	justify-content: center;
+}
+
+.item {
+	flex: 4;
+	user-select: none;
+    cursor: pointer;
+}
+
+.item:hover {
+	background-color: #e6e6e6;
+}
+
+.quanity {
+	flex: 1;
+}
+
+.button {
+	margin-top: 10px;
+	padding: 10px;
+	font-size: 12pt;
+	font-weight: bold;
+	font-family: 'Nunito', sans-serif;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.remove-button {
+	margin-top: 10px;
+	padding: 10px;
+	font-size: 12pt;
+	font-weight: bold;
+	font-family: 'Nunito', sans-serif;
+}
+
+input, select, textarea {
+	font-family: 'Nunito', sans-serif;
+}
+textarea {
+	/*padding: 4px;*/
+}
+
+/* Totally not taken somewhere else. */
+
+.editor-errors {
+	color: red;
+	margin-top: 10px;
+}
+
+.editor-confirms {
+	color: green;
+	margin-top: 10px;
+}
+
+.editor-errors ul {
+	font-size: unset;
+}
+
+.logbutt {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.editor-aa {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.editor-aa label {
+	text-align: right;
+	width: 200px;
+	margin-right: 10px;
+}
+
+.editor-aa input, .editor-aa select, .editor-aa textarea {
+	/*font-size: large;*/
+	width: 100%;
+}
+
+.editor-aa textarea {
+	resize: none;
+}
+
+.edit-split {
+	display: flex;
+}
+
+.edit-left {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.edit-left img {
+	height: 200px;
+}
+
+.edit-right {
+	flex: 4;
+}
+
+table {
+	width: 100%;
+}
+
+td,th {
+	border: 2px solid #e6e6e6;
+	padding: 5px;
+}
+
+th {
+	background-color: #e6e6e6;
+}
+
+td {
+	text-align: center;
+}
+
+.about-user {
+	margin-bottom: 10px;
+}
+
+.price {
+	font-size: 14pt;
+	margin: 10px;
+	margin-left: 0px;
+	padding: 10px;
+	border: 2px dashed #d9d9d9;
+	border-radius: 5px;
+}
+
+.price-box {
+	margin: 20px;
+	margin-left: 0px;
+	margin-bottom: 20px;
+}
+
+.item-info {
+	margin-left: 20px;
+}
+
+.buy-box {
+	text-align: center;
+	font-size: 14pt;
+	margin-top: 20px;
+}
+
+.buy-box select {
+	font-size: 14pt;
+}
+
+.quanity-form {
+	margin-top: 10px;
+}
+
+.empty-table {
+	display: none;
+	padding: 20px;
+	text-align: center;
+	font-style: italic;
+}
+
+.block-categories a{
+	
+}
+
+.block-categories a:link {
+	color: blue;
+	text-decoration: inherit;
+}
+
+.block-categories a:visited {
+	color: blue;
+	text-decoration: inherit;
+}
+
+.block-categories a:hover {
+	text-decoration: underline;
+}

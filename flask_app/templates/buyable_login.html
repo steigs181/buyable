@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'template_meta.html' %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="header-box">
+				<div class="header-items">
+					{% include 'template_nav.html' %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>Register</h2>
+					<form class="reg" action="/action/user/signup" method="post">
+						<div class="editor-aa">
+							<label for="signup_fname">First Name</label>
+							<input type="text" id="signup_fname" name="signup_fname"><br>
+						</div>
+						<div class="editor-aa">
+							<label for="signup_lname">Last Name</label>
+							<input type="text" id="signup_lname" name="signup_lname"><br>
+						</div>
+						<div class="editor-aa">
+							<label for="signup_email">Email</label>
+							<input type="text" id="signup_email" name="signup_email"><br>
+						</div>
+						<div class="editor-aa">
+							<label for="signup_password1">Password</label>
+							<input type="password" id="signup_password1" name="signup_password1"><br>
+						</div>
+						<div class="editor-aa">
+							<label for="signup_password2">Confirm Password</label>
+							<input type="password" id="signup_password2" name="signup_password2"><br>
+						</div>
+						<input class="button logbutt" type="submit" value="Register">
+					</form>
+					{% with messages = get_flashed_messages(category_filter=['signup']) %}
+					{% if messages %}
+					<div class="editor-errors logbutt">
+						<p>There's some problems:</p>
+						<ul>
+							{% for message in messages %}
+							<li>{{message}}</li>
+							{% endfor %}
+						</ul>
+					</div>
+					{% endif %}
+					{% endwith %}
+				</div>
+				<div class="block-items block" style="min-height: unset;">
+					<h2>Login</h2>
+					<form class="reg" action="/action/user/login" method="post">
+						<div class="editor-aa">
+							<label for="login_email">Email</label>
+							<input type="text" id="login_email" name="login_email"><br>
+						</div>
+						<div class="editor-aa">
+							<label for="login_password">Password</label>
+							<input type="password" id="login_password" name="login_password"><br>
+						</div>
+						<input class="button logbutt" type="submit" value="Login">
+					</form>
+					{% with messages = get_flashed_messages(category_filter=['login']) %}
+					{% if messages %}
+					<div class="editor-errors">
+						<p>There's some problems:</p>
+						<ul>
+							{% for message in messages %}
+							<li>{{message}}</li>
+							{% endfor %}
+						</ul>
+					</div>
+					{% endif %}
+					{% endwith %}
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

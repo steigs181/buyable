@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include 'template_meta.html' %}
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<div class="header-box">
+				<div class="header-items">
+					{% include 'template_nav.html' %}
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<div class="edit-split">
+						<div class="edit-left">
+							<img src="{{ url_for('static', filename='img/uploads/'+item.img) }}" alt="Item">
+						</div>
+						<div class="edit-right">
+							<div class="item-info">
+								<h2>{{ item.name }}</h2>
+								<p class="price-box"><span class="price"><strong>Price:</strong> {{ item.price_str }}</span></p>
+								<p><strong>Seller:</strong> <a href="/user/view?id={{ item.user_id }}">{{ author }}</a><br><strong>Category:</strong> <a href="/?c={{ cat.id }}">{{ cat.name }}</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="block-categories block" style="min-height: unset;">
+					<h2>Buy Product</h2>
+					<div class="buy-box">
+					{% if allow_buy==True %}
+					{% if item.price>0 %}<p><strong>Total:</strong> <span id="js_total">{{ item.price_str }}</span></p>{% endif %}
+					<div class="quanity-form">					
+						<form action="/action/cart?item={{ item.id }}" method="post">
+							<fieldset style="border: 0;" {% if allow_buy==False %}disabled{% endif %}>
+							<label>Quantity: </label>
+							<select style="padding-right: 20px; text-align: center;" id="jsr" name="item_quanity" onchange="quanity_change(this)">
+								{% for n in range(1,32+1) %}
+								<option value="{{ n }}">{{ n }}</option>
+								{% endfor %}
+							</select>
+							<br><input style="margin-top: 32px;" class="button logbutt" type="submit" value="Add to Cart">
+							</fieldset>
+						</form>
+						{% endif %}
+						{% if psst|length>0 %}
+						<p style="font-size: 12pt">{{ psst }}</p>
+						{% endif %}
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% if item.description|length>0 %}
+		<div class="content">
+			<div class="block-split">
+				<div class="block-items block" style="min-height: unset;">
+					<h2>About Product</h2>
+					<p>{{ item.description }}</p>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</body>
+<script type="text/javascript">
+	price={{ item.price }}
+	asdf=document.querySelector("#jsr");
+	if (asdf!=null)
+	{
+	quanity_change(asdf);
+	}
+</script>
+</html>
